@@ -33,7 +33,7 @@ obl_dict = {
     27: "Житомирська"
 }
 
-df = pd.read_csv('df/combined_df.csv', index_col=False)
+df = pd.read_csv('../df/combined_df.csv', index_col=False)
 
 def filter_data(min_year, max_year, min_week, max_week, set, oblast, sort_ascending, sort_descending):
     obl =  [k for k, v in obl_dict.items() if v == oblast][0]
@@ -43,17 +43,17 @@ def filter_data(min_year, max_year, min_week, max_week, set, oblast, sort_ascend
     selected_df = selected_df[['year','week',set]]
 
     the_rest_df = df[(df['year'] >= min_year) & (df['year'] <= max_year) &
-                     (df['week'] >= min_week) & (df['week'] <= max_week) &
-                     (df['oblast'] != obl)]
+                     (df['week'] >= min_week) & (df['week'] <= max_week)]
 
-    the_rest_df = the_rest_df[['year','week',set]]
-    ang_df = the_rest_df.groupby(['year','week'], as_index=False)[set].mean()
+    the_rest_df = the_rest_df[['year','week',set, 'oblast']]
+    # ang_df = the_rest_df.groupby(['year', 'oblast'], as_index=False)[set].mean()
 
     fig1, ax1 = plt.subplots(figsize=(10, 4))
     fig2, ax2 = plt.subplots(figsize=(10, 4))
     sns.lineplot(data=selected_df, x="year", y=set, ax=ax1, label='Обрана область')
-    sns.lineplot(data=selected_df, x="year", y=set, ax=ax2, label='Обрана область')
-    sns.lineplot(data=ang_df, x="year", y=set, ax=ax2, label='Решта')
+    sns.barplot(data=the_rest_df, x = 'oblast', y=set, ax=ax2)
+    # sns.lineplot(data=selected_df, x="year", y=set, ax=ax2, label='Обрана область')
+    # sns.lineplot(data=ang_df, x="year", y=set, ax=ax2, label='Решта')
 
     if sort_ascending and not sort_descending:
         table = selected_df.sort_values(by=[set])

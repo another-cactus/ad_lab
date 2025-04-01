@@ -1,6 +1,4 @@
-import streamlit as st
-import numpy as np
-from utils import *
+from l3.utils import *
 
 
 obl_dict = {
