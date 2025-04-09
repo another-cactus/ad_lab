@@ -1,4 +1,4 @@
-from l3.utils import *
+from utils import *
 
 
 obl_dict = {
@@ -37,7 +37,7 @@ DEFAULTS = {
     'max_year': 2024,
     'slider_week': (1,52),
     'slider_year': (1982, 2024),
-    'sort_ascending': True,
+    'sort_ascending': False,
     'sort_descending': False,
     'set': 'vci',
     'oblast': 'Черкаська'

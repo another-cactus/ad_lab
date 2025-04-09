@@ -33,7 +33,7 @@ obl_dict = {
     27: "Житомирська"
 }
 
-df = pd.read_csv('../df/combined_df.csv', index_col=False)
+df = pd.read_csv('df/combined_df.csv', index_col=False)
 
 def filter_data(min_year, max_year, min_week, max_week, set, oblast, sort_ascending, sort_descending):
     obl =  [k for k, v in obl_dict.items() if v == oblast][0]
