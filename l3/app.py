@@ -1,5 +1,5 @@
 from utils import *
-
+import streamlit as st
 
 obl_dict = {
     1: "Черкаська",
